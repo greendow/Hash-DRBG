@@ -27,7 +27,7 @@ int hash_df(HASH_DRBG_CTX *drbg_ctx,
     unsigned char md_value[EVP_MAX_MD_SIZE];
     unsigned char *p = output;
 #ifdef _HASH_DRBG_DEBUG
-	int i;
+    int i;
 #endif
 
     int residual;
@@ -69,12 +69,12 @@ int hash_df(HASH_DRBG_CTX *drbg_ctx,
         EVP_DigestUpdate(md_ctx, input, input_len);
         EVP_DigestFinal_ex(md_ctx, md_value, NULL);
 #ifdef _HASH_DRBG_DEBUG
-		printf("Hash(counter||no_of_bits_to_return||input_string) value:\n");
-		for (i = 0; i < (int)(drbg_ctx->hash_output_len); i++)
-		{
-			printf("0x%x  ", md_value[i]);
-		}
-		printf("\n");
+	printf("Hash(counter||no_of_bits_to_return||input_string) value:\n");
+	for (i = 0; i < (int)(drbg_ctx->hash_output_len); i++)
+	{
+	    printf("0x%x  ", md_value[i]);
+	}
+	printf("\n");
 #endif
 
         if ( residual >= (int)(drbg_ctx->hash_output_len) )
@@ -129,7 +129,7 @@ int hash_drbg_instantiate(const EVP_MD *md,
     unsigned char *seed_material, *buffer, *p;
     unsigned int seed_material_len;
 #ifdef _HASH_DRBG_DEBUG
-	int i;
+    int i;
 #endif
 
     if ( (!(md)) || (!(entropy)) || (!(drbg_ctx)) )
@@ -186,13 +186,13 @@ int hash_drbg_instantiate(const EVP_MD *md,
     }
 
 #ifdef _HASH_DRBG_DEBUG
-	printf("Seed material length is %d bytes.\n", seed_material_len);
-	printf("Seed material:\n");
-	for (i = 0; i < (int)seed_material_len; i++)
-	{
-		printf("0x%x  ", seed_material[i]);
-	}
-	printf("\n");
+    printf("Seed material length is %d bytes.\n", seed_material_len);
+    printf("Seed material:\n");
+    for (i = 0; i < (int)seed_material_len; i++)
+    {
+	printf("0x%x  ", seed_material[i]);
+    }
+    printf("\n");
 #endif
     if ( error_code = hash_df(drbg_ctx,
                               seed_material,
@@ -205,12 +205,12 @@ int hash_drbg_instantiate(const EVP_MD *md,
     }
     free(seed_material);
 #ifdef _HASH_DRBG_DEBUG
-	printf("V:\n");
-	for (i = 0; i < (int)(drbg_ctx->seed_byte_len); i++)
-	{
-		printf("0x%x  ", drbg_ctx->V[i]);
-	}
-	printf("\n");
+    printf("V:\n");
+    for (i = 0; i < (int)(drbg_ctx->seed_byte_len); i++)
+    {
+	printf("0x%x  ", drbg_ctx->V[i]);
+    }
+    printf("\n");
 #endif
 
     if ( !(buffer = (unsigned char *)malloc((1 + drbg_ctx->seed_byte_len))) )
@@ -233,12 +233,12 @@ int hash_drbg_instantiate(const EVP_MD *md,
     }
     free(buffer);
 #ifdef _HASH_DRBG_DEBUG
-	printf("C:\n");
-	for (i = 0; i < (int)(drbg_ctx->seed_byte_len); i++)
-	{
-		printf("0x%x  ", drbg_ctx->C[i]);
-	}
-	printf("\n");
+    printf("C:\n");
+    for (i = 0; i < (int)(drbg_ctx->seed_byte_len); i++)
+    {
+	printf("0x%x  ", drbg_ctx->C[i]);
+    }
+    printf("\n");
 #endif
 
     drbg_ctx->reseed_counter = 1;
@@ -255,7 +255,7 @@ int reseed_hash_drbg(HASH_DRBG_CTX *drbg_ctx,
     unsigned char *seed_material, *buffer, *p;
     unsigned int seed_material_len;
 #ifdef _HASH_DRBG_DEBUG
-	int i;
+    int i;
 #endif
 
     if ( (!(drbg_ctx)) || (!(entropy)) )
@@ -287,13 +287,13 @@ int reseed_hash_drbg(HASH_DRBG_CTX *drbg_ctx,
         memcpy(p, addition_input, addition_input_len);
     }
 #ifdef _HASH_DRBG_DEBUG
-	printf("Seed material length is %d bytes.\n", seed_material_len);
-	printf("Seed material:\n");
-	for (i = 0; i < (int)seed_material_len; i++)
-	{
-		printf("0x%x  ", seed_material[i]);
-	}
-	printf("\n");
+    printf("Seed material length is %d bytes.\n", seed_material_len);
+    printf("Seed material:\n");
+    for (i = 0; i < (int)seed_material_len; i++)
+    {
+	printf("0x%x  ", seed_material[i]);
+    }
+    printf("\n");
 #endif
 
     if ( error_code = hash_df(drbg_ctx,
@@ -316,12 +316,12 @@ int reseed_hash_drbg(HASH_DRBG_CTX *drbg_ctx,
     p++;
     memcpy(p, drbg_ctx->V, drbg_ctx->seed_byte_len);
 #ifdef _HASH_DRBG_DEBUG
-	printf("V:\n");
-	for (i = 0; i < (int)(drbg_ctx->seed_byte_len); i++)
-	{
-		printf("0x%x  ", drbg_ctx->V[i]);
-	}
-	printf("\n");
+    printf("V:\n");
+    for (i = 0; i < (int)(drbg_ctx->seed_byte_len); i++)
+    {
+	printf("0x%x  ", drbg_ctx->V[i]);
+    }
+    printf("\n");
 #endif
 
     if ( error_code = hash_df(drbg_ctx,
@@ -335,12 +335,12 @@ int reseed_hash_drbg(HASH_DRBG_CTX *drbg_ctx,
     }
     free(buffer);
 #ifdef _HASH_DRBG_DEBUG
-	printf("C:\n");
-	for (i = 0; i < (int)(drbg_ctx->seed_byte_len); i++)
-	{
-		printf("0x%x  ", drbg_ctx->C[i]);
-	}
-	printf("\n");
+    printf("C:\n");
+    for (i = 0; i < (int)(drbg_ctx->seed_byte_len); i++)
+    {
+	printf("0x%x  ", drbg_ctx->C[i]);
+    }
+    printf("\n");
 #endif
 
     drbg_ctx->reseed_counter = (long long)(1);
@@ -378,8 +378,8 @@ int hash_gen(HASH_DRBG_CTX *drbg_ctx,
     BN_CTX *bn_ctx = NULL;
     BIGNUM *bn_data = NULL, *bn_one = NULL, *bn_module = NULL, *bn_sum = NULL;
 #ifdef _HASH_DRBG_DEBUG
-	int i;
-	char *q;
+    int i;
+    char *q;
 #endif
 
     if ( (!(drbg_ctx)) || (!(output)) )
@@ -398,12 +398,12 @@ int hash_gen(HASH_DRBG_CTX *drbg_ctx,
     }
     memcpy(data, drbg_ctx->V, drbg_ctx->seed_byte_len);
 #ifdef _HASH_DRBG_DEBUG
-	printf("data:\n");
-	for (i = 0; i < (int)(drbg_ctx->seed_byte_len); i++)
-	{
-		printf("0x%x  ", data[i]);
-	}
-	printf("\n");
+    printf("data:\n");
+    for (i = 0; i < (int)(drbg_ctx->seed_byte_len); i++)
+    {
+	printf("0x%x  ", data[i]);
+    }
+    printf("\n");
 #endif
     residual = (int)output_len;
     if ( (!(bn_ctx = BN_CTX_secure_new())) )
@@ -447,11 +447,11 @@ int hash_gen(HASH_DRBG_CTX *drbg_ctx,
             goto clean_up;
     }
 #ifdef _HASH_DRBG_DEBUG
-	printf("Module: \n");
-	q = BN_bn2hex(bn_module);
-	printf("%s\n", q);
-	OPENSSL_free(q);
-	printf("\n");
+    printf("Module: \n");
+    q = BN_bn2hex(bn_module);
+    printf("%s\n", q);
+    OPENSSL_free(q);
+    printf("\n");
 #endif
 
     while (residual > 0 )
@@ -460,12 +460,12 @@ int hash_gen(HASH_DRBG_CTX *drbg_ctx,
         EVP_DigestUpdate(md_ctx, data, drbg_ctx->seed_byte_len);
         EVP_DigestFinal_ex(md_ctx, md_value, NULL);
 #ifdef _HASH_DRBG_DEBUG
-		printf("w:\n");
-		for (i = 0; i < (int)(drbg_ctx->hash_output_len); i++)
-		{
-			printf("0x%x  ", md_value[i]);
-		}
-		printf("\n");
+	printf("w:\n");
+	for (i = 0; i < (int)(drbg_ctx->hash_output_len); i++)
+	{
+	    printf("0x%x  ", md_value[i]);
+	}
+	printf("\n");
 #endif
 
         if ( residual >= (int)(drbg_ctx->hash_output_len) )
@@ -540,7 +540,7 @@ int gen_rnd_bytes_with_hash_drbg(HASH_DRBG_CTX *drbg_ctx,
     BIGNUM *bn_C = NULL, *bn_reseed_cnt = NULL, *bn_sum = NULL;
     BIGNUM *bn_tmp_sum_1 = NULL, *bn_tmp_sum_2 = NULL;
 #ifdef _HASH_DRBG_DEBUG
-	int i;
+    int i;
 #endif
 
     if ( (!(drbg_ctx)) || (!(rnd)) )
@@ -621,12 +621,12 @@ int gen_rnd_bytes_with_hash_drbg(HASH_DRBG_CTX *drbg_ctx,
         EVP_DigestUpdate(md_ctx, addition_input, addition_input_len);
         EVP_DigestFinal_ex(md_ctx, md_value, NULL);
 #ifdef _HASH_DRBG_DEBUG
-		printf("w = Hash(0x02||V||additional_input) is:\n");
-		for (i = 0; i < (int)(drbg_ctx->hash_output_len); i++)
-		{
-			printf("0x%x  ", md_value[i]);
-		}
-		printf("\n");
+	printf("w = Hash(0x02||V||additional_input) is:\n");
+	for (i = 0; i < (int)(drbg_ctx->hash_output_len); i++)
+	{
+	    printf("0x%x  ", md_value[i]);
+	}
+	printf("\n");
 #endif
 
         if ( !(BN_bin2bn(md_value, drbg_ctx->hash_output_len, bn_w)) )
@@ -648,12 +648,12 @@ int gen_rnd_bytes_with_hash_drbg(HASH_DRBG_CTX *drbg_ctx,
             goto clean_up;
         }
 #ifdef _HASH_DRBG_DEBUG
-		printf("V:\n");
-		for (i = 0; i < (int)(drbg_ctx->seed_byte_len); i++)
-		{
-			printf("0x%x  ", drbg_ctx->V[i]);
-		}
-		printf("\n");
+	printf("V:\n");
+	for (i = 0; i < (int)(drbg_ctx->seed_byte_len); i++)
+	{
+	    printf("0x%x  ", drbg_ctx->V[i]);
+	}
+	printf("\n");
 #endif
     }
     
@@ -671,12 +671,12 @@ int gen_rnd_bytes_with_hash_drbg(HASH_DRBG_CTX *drbg_ctx,
     EVP_DigestUpdate(md_ctx, drbg_ctx->V, drbg_ctx->seed_byte_len);
     EVP_DigestFinal_ex(md_ctx, md_value, NULL);
 #ifdef _HASH_DRBG_DEBUG
-	printf("H:\n");
-	for (i = 0; i < (int)(drbg_ctx->hash_output_len); i++)
-	{
-		printf("0x%x  ", md_value[i]);
-	}
-	printf("\n");
+    printf("H:\n");
+    for (i = 0; i < (int)(drbg_ctx->hash_output_len); i++)
+    {
+	printf("0x%x  ", md_value[i]);
+    }
+    printf("\n");
 #endif
 
     if ( !(BN_bin2bn(md_value, drbg_ctx->hash_output_len, bn_H)) )
@@ -715,12 +715,12 @@ int gen_rnd_bytes_with_hash_drbg(HASH_DRBG_CTX *drbg_ctx,
         goto clean_up;
     }
 #ifdef _HASH_DRBG_DEBUG
-	printf("V:\n");
-	for (i = 0; i < (int)(drbg_ctx->seed_byte_len); i++)
-	{
-		printf("0x%x  ", drbg_ctx->V[i]);
-	}
-	printf("\n");
+    printf("V:\n");
+    for (i = 0; i < (int)(drbg_ctx->seed_byte_len); i++)
+    {
+	printf("0x%x  ", drbg_ctx->V[i]);
+    }
+    printf("\n");
 #endif
     error_code = 0;
     (drbg_ctx->reseed_counter)++;
