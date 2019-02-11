@@ -55,7 +55,7 @@ int main(void)
     printf("Generating random bytes test succeeded!\n");
 
 #if defined(_WIN32) || defined(_WIN64)
-	system("pause");
+    system("pause");
 #endif
     return 0;
 }
