@@ -37,26 +37,26 @@ int test_sha256_hash_drbg_without_prediction_resistance(void)
     0x7F, 0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8A,
     0x8B, 0x8C, 0x8D, 0x8E, 0x8F, 0x90, 0x91, 0x92, 0x93, 0x94, 0x95, 0x96};
 
-	unsigned char additional_input2[] = {0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6,
-	0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC, 0xAD, 0xAE, 0xAF, 0xB0, 0xB1, 0xB2,
-	0xB3, 0xB4, 0xB5, 0xB6, 0xB7, 0xB8, 0xB9, 0xBA, 0xBB, 0xBC, 0xBD, 0xBE,
-	0xBF, 0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA,
-	0xCB, 0xCC, 0xCD, 0xCE, 0xCF, 0xD0, 0xD1, 0xD2, 0xD3, 0xD4, 0xD5, 0xD6};
+    unsigned char additional_input2[] = {0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6,
+    0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC, 0xAD, 0xAE, 0xAF, 0xB0, 0xB1, 0xB2,
+    0xB3, 0xB4, 0xB5, 0xB6, 0xB7, 0xB8, 0xB9, 0xBA, 0xBB, 0xBC, 0xBD, 0xBE,
+    0xBF, 0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA,
+    0xCB, 0xCC, 0xCD, 0xCE, 0xCF, 0xD0, 0xD1, 0xD2, 0xD3, 0xD4, 0xD5, 0xD6};
 
     unsigned int entropy_len, nonce_len, personal_str_len, additional_input_len, additional_input2_len;
     unsigned char random_bytes[64];
     unsigned int random_bytes_len;
     const EVP_MD *md;
     HASH_DRBG_CTX *drbg_ctx;
-	int i;
+    int i;
 
-	printf("\n****************************************************\n");
-	printf("First call to generate random bytes.\n");
+    printf("\n****************************************************\n");
+    printf("First call to generate random bytes.\n");
     entropy_len = sizeof(entropy);
     nonce_len = sizeof(nonce);
     personal_str_len = sizeof(personal_str);
     additional_input_len = sizeof(additional_input);
-	additional_input2_len = sizeof(additional_input2);
+    additional_input2_len = sizeof(additional_input2);
     random_bytes_len = sizeof(random_bytes);
     md = EVP_sha256();
 
@@ -95,9 +95,9 @@ int test_sha256_hash_drbg_without_prediction_resistance(void)
     }
     printf("\n");
 
-	printf("\n****************************************************\n");
-	printf("Second call to generate random bytes.\n");
-	 if ( error_code = gen_rnd_bytes_with_hash_drbg(drbg_ctx,
+    printf("\n****************************************************\n");
+    printf("Second call to generate random bytes.\n");
+    if ( error_code = gen_rnd_bytes_with_hash_drbg(drbg_ctx,
                                                    random_bytes_len,
                                                    additional_input2,
                                                    additional_input2_len,
@@ -148,10 +148,10 @@ int test_sha256_hash_drbg_with_prediction_resistance(void)
     unsigned int random_bytes_len;
     const EVP_MD *md;
     HASH_DRBG_CTX *drbg_ctx;
-	int i;
+    int i;
 
-	printf("\n****************************************************\n");
-	printf("First call to generate random bytes.\n");
+    printf("\n****************************************************\n");
+    printf("First call to generate random bytes.\n");
     entropy_len = sizeof(entropy);
     entropy_1_len = sizeof(entropy_1);
     entropy_2_len = sizeof(entropy_2);
@@ -205,8 +205,8 @@ int test_sha256_hash_drbg_with_prediction_resistance(void)
     }
     printf("\n");
 
-	printf("\n****************************************************\n");
-	printf("Second call to generate random bytes.\n");
+    printf("\n****************************************************\n");
+    printf("Second call to generate random bytes.\n");
     if ( error_code = reseed_hash_drbg(drbg_ctx,
                                        entropy_2,
                                        entropy_2_len,
@@ -217,11 +217,11 @@ int test_sha256_hash_drbg_with_prediction_resistance(void)
         return error_code;
     }
 
-	 if ( error_code = gen_rnd_bytes_with_hash_drbg(drbg_ctx,
-                                                    random_bytes_len,
-                                                    NULL,
-                                                    0,
-                                                    random_bytes) )
+    if ( error_code = gen_rnd_bytes_with_hash_drbg(drbg_ctx,
+                                                   random_bytes_len,
+                                                   NULL,
+                                                   0,
+                                                   random_bytes) )
     {
         hash_drbg_ctx_free(drbg_ctx);
         return error_code;
@@ -268,11 +268,11 @@ int test_sha512_hash_drbg_without_prediction_resistance(void)
     0xBB, 0xBC, 0xBD, 0xBE, 0xBF, 0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6,
     0xC7, 0xC8, 0xC9, 0xCA, 0xCB, 0xCC, 0xCD, 0xCE};
 
-	unsigned char additional_input_2[] = {0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6,
-	0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC, 0xAD, 0xAE, 0xAF, 0xB0, 0xB1, 0xB2,
-	0xB3, 0xB4, 0xB5, 0xB6, 0xB7, 0xB8, 0xB9, 0xBA, 0xBB, 0xBC, 0xBD, 0xBE,
-	0xBF, 0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA,
-	0xCB, 0xCC, 0xCD, 0xCE, 0xCF, 0xD0, 0xD1, 0xD2, 0xD3, 0xD4, 0xD5, 0xD6,
+    unsigned char additional_input_2[] = {0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6,
+    0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC, 0xAD, 0xAE, 0xAF, 0xB0, 0xB1, 0xB2,
+    0xB3, 0xB4, 0xB5, 0xB6, 0xB7, 0xB8, 0xB9, 0xBA, 0xBB, 0xBC, 0xBD, 0xBE,
+    0xBF, 0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA,
+    0xCB, 0xCC, 0xCD, 0xCE, 0xCF, 0xD0, 0xD1, 0xD2, 0xD3, 0xD4, 0xD5, 0xD6,
     0xD7, 0xD8, 0xD9, 0xDA, 0xDB, 0xDC, 0xDD, 0xDE, 0xDF, 0xE0, 0xE1, 0xE2,
     0xE3, 0xE4, 0xE5, 0xE6, 0xE7, 0xE8, 0xE9, 0xEA, 0xEB, 0xEC, 0xED, 0xEE,
     0xEF, 0xF0, 0xF1, 0xF2, 0xF3, 0xF4, 0xF5, 0xF6, 0xF7, 0xF8, 0xF9, 0xFA,
@@ -284,14 +284,14 @@ int test_sha512_hash_drbg_without_prediction_resistance(void)
     unsigned int random_bytes_len;
     const EVP_MD *md;
     HASH_DRBG_CTX *drbg_ctx;
-	int i;
+    int i;
 
-	printf("\n****************************************************\n");
-	printf("First call to generate random bytes.\n");
+    printf("\n****************************************************\n");
+    printf("First call to generate random bytes.\n");
     entropy_len = sizeof(entropy);
     nonce_len = sizeof(nonce);
     additional_input_1_len = sizeof(additional_input_1);
-	additional_input_2_len = sizeof(additional_input_2);
+    additional_input_2_len = sizeof(additional_input_2);
     random_bytes_len = sizeof(random_bytes);
     md = EVP_sha512();
 
@@ -330,13 +330,13 @@ int test_sha512_hash_drbg_without_prediction_resistance(void)
     }
     printf("\n");
 
-	printf("\n****************************************************\n");
-	printf("Second call to generate random bytes.\n");
-	 if ( error_code = gen_rnd_bytes_with_hash_drbg(drbg_ctx,
-                                                    random_bytes_len,
-                                                    additional_input_2,
-                                                    additional_input_2_len,
-                                                    random_bytes) )
+    printf("\n****************************************************\n");
+    printf("Second call to generate random bytes.\n");
+    if ( error_code = gen_rnd_bytes_with_hash_drbg(drbg_ctx,
+                                                   random_bytes_len,
+                                                   additional_input_2,
+                                                   additional_input_2_len,
+                                                   random_bytes) )
     {
         hash_drbg_ctx_free(drbg_ctx);
         return error_code;
@@ -355,7 +355,7 @@ int test_sha512_hash_drbg_without_prediction_resistance(void)
 
 int test_sha512_hash_drbg_with_prediction_resistance(void)
 {
-	int error_code;
+    int error_code;
 
     unsigned char entropy[] = {0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6,
     0x7, 0x8, 0x9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF, 0x10, 0x11, 0x12, 0x13,
@@ -416,11 +416,11 @@ int test_sha512_hash_drbg_with_prediction_resistance(void)
     0xBB, 0xBC, 0xBD, 0xBE, 0xBF, 0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6,
     0xC7, 0xC8, 0xC9, 0xCA, 0xCB, 0xCC, 0xCD, 0xCE};
 
-	unsigned char additional_input_2[] = {0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6,
-	0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC, 0xAD, 0xAE, 0xAF, 0xB0, 0xB1, 0xB2,
-	0xB3, 0xB4, 0xB5, 0xB6, 0xB7, 0xB8, 0xB9, 0xBA, 0xBB, 0xBC, 0xBD, 0xBE,
-	0xBF, 0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA,
-	0xCB, 0xCC, 0xCD, 0xCE, 0xCF, 0xD0, 0xD1, 0xD2, 0xD3, 0xD4, 0xD5, 0xD6,
+    unsigned char additional_input_2[] = {0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6,
+    0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC, 0xAD, 0xAE, 0xAF, 0xB0, 0xB1, 0xB2,
+    0xB3, 0xB4, 0xB5, 0xB6, 0xB7, 0xB8, 0xB9, 0xBA, 0xBB, 0xBC, 0xBD, 0xBE,
+    0xBF, 0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA,
+    0xCB, 0xCC, 0xCD, 0xCE, 0xCF, 0xD0, 0xD1, 0xD2, 0xD3, 0xD4, 0xD5, 0xD6,
     0xD7, 0xD8, 0xD9, 0xDA, 0xDB, 0xDC, 0xDD, 0xDE, 0xDF, 0xE0, 0xE1, 0xE2,
     0xE3, 0xE4, 0xE5, 0xE6, 0xE7, 0xE8, 0xE9, 0xEA, 0xEB, 0xEC, 0xED, 0xEE,
     0xEF, 0xF0, 0xF1, 0xF2, 0xF3, 0xF4, 0xF5, 0xF6, 0xF7, 0xF8, 0xF9, 0xFA,
@@ -433,10 +433,10 @@ int test_sha512_hash_drbg_with_prediction_resistance(void)
     unsigned int random_bytes_len;
     const EVP_MD *md;
     HASH_DRBG_CTX *drbg_ctx;
-	int i;
+    int i;
 
-	printf("\n****************************************************\n");
-	printf("First call to generate random bytes.\n");
+    printf("\n****************************************************\n");
+    printf("First call to generate random bytes.\n");
     entropy_len = sizeof(entropy);
     entropy_1_len = sizeof(entropy_1);
     entropy_2_len = sizeof(entropy_2);
@@ -493,8 +493,8 @@ int test_sha512_hash_drbg_with_prediction_resistance(void)
     }
     printf("\n");
 
-	printf("\n****************************************************\n");
-	printf("Second call to generate random bytes.\n");
+    printf("\n****************************************************\n");
+    printf("Second call to generate random bytes.\n");
     if ( error_code = reseed_hash_drbg(drbg_ctx,
                                        entropy_2,
                                        entropy_2_len,
@@ -505,11 +505,11 @@ int test_sha512_hash_drbg_with_prediction_resistance(void)
         return error_code;
     }
 
-	 if ( error_code = gen_rnd_bytes_with_hash_drbg(drbg_ctx,
-                                                    random_bytes_len,
-                                                    NULL,
-                                                    0,
-                                                    random_bytes) )
+    if ( error_code = gen_rnd_bytes_with_hash_drbg(drbg_ctx,
+                                                   random_bytes_len,
+                                                   NULL,
+                                                   0,
+                                                   random_bytes) )
     {
         hash_drbg_ctx_free(drbg_ctx);
         return error_code;
