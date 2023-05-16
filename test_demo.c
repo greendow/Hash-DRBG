@@ -45,7 +45,7 @@ int main(void)
     printf("Generating random bytes test succeeded!\n");
 
     printf("\n*******************************************\n");
-    printf("Test SHA-256 Hash DRBG with prediction resistance:\n");
+    printf("Test SHA-512 Hash DRBG with prediction resistance:\n");
     if ( error_code = test_sha512_hash_drbg_with_prediction_resistance() )
     {
         printf("Generating random bytes test failed!\n");
